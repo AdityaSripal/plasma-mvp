@@ -84,6 +84,7 @@ contract RootChain {
             intermediate = keccak256(intermediate, intermediate);
         }
     }
+    
     /// @param root 32 byte merkleRoot of ChildChain block 
     /// @notice childChain blocks can only be submitted at most every 6 root chain blocks
     function submitBlock(bytes32 root)

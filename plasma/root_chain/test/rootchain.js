@@ -5,12 +5,19 @@ contract('RootChain', accounts => {
     it("Submit block from authority passes", () => {
         return RootChain.deployed().then(async (instance) => {
             var curr = await instance.currentChildBlock.call().then(x => {return parseInt(x)})
+
+            // waiting at least 6 root chain blocks before submitting a block
             for (i = 0; i < 5; i++) {
                 await web3.eth.sendTransaction({'from': accounts[0], 'to': accounts[1], 'value': 100});
             }
-            await instance.submitBlock('2984748479872');
+
+            var blockRoot = '2984748479872';
+            await instance.submitBlock(web3.fromAscii(blockRoot));
             var next = await instance.currentChildBlock.call().then(y => {return parseInt(y)})
             assert.equal(curr + 1, next, "Child block did not increment");
+
+            var childBlock = await instance.getChildChain.call(curr);
+            assert.equal(web3.toUtf8(childBlock[0]), blockRoot, 'Child block merkle root does not match submitted merkle root.');
         });
     });
     it("Depositing a block", () => {
