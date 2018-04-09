@@ -1,5 +1,13 @@
 ### PLASMA MVP WIP
 
+
+#### We have permanently moved our work to: https://github.com/FourthState
+
+RootChain repo: https://github.com/FourthState/plasma-mvp-rootchain
+
+Sidechain repo: https://github.com/FourthState/plasma-mvp-sidechain
+
+
 We're implementing the [Minimum Viable Plasma](https://ethresear.ch/t/minimal-viable-plasma/426)
 
 This is the MVP Plasma repo for Blockchain @ Berkeley's Plasma team. 
